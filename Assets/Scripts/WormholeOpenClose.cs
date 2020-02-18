@@ -108,6 +108,8 @@ public class WormholeOpenClose : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         currentView.scaleHole = 0.0f;
+        discColliderA.enabled = false;
+        discColliderB.enabled = false;
     }
 
     private ScaleView GetCurrentView()
