@@ -10,23 +10,26 @@ public class PlayerMover : MonoBehaviour
 
     public bool isBusy = false;
 
-    float movementAxis;
-    float movementAxisRaw;
+    float horizontalAxis;
+    float horizontalAxisRaw;
+
+    float verticalAxis;
+    float verticalAxisRaw;
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        movementAxis = Input.GetAxis("Horizontal");
-        movementAxisRaw = Input.GetAxisRaw("Horizontal");
-        
-        // Move the player left and right
-        if (!isBusy && (movementAxis > stickThreshold || movementAxis < -stickThreshold))
-        {
-            transform.position = transform.position + new Vector3(movementAxis * Time.deltaTime * moveSpeed, 0f, 0f);
-        }
+        horizontalAxis = Input.GetAxis("Horizontal");
+        horizontalAxisRaw = Input.GetAxisRaw("Horizontal");
+
+        verticalAxis = Input.GetAxis("Vertical");
+        verticalAxisRaw = Input.GetAxisRaw("Vertical");
+
+        // Move the player
+        transform.position = transform.position + new Vector3(horizontalAxis * Time.deltaTime * moveSpeed, verticalAxis * Time.deltaTime * moveSpeed, 0f);
 
         // New flip behavior
-        if (movementAxisRaw < -stickThreshold)
+        if (horizontalAxisRaw < -stickThreshold)
         {
             if (!isFacingLeft)
             {
@@ -34,7 +37,7 @@ public class PlayerMover : MonoBehaviour
                 isFacingLeft = true;
             }
         }
-        else if (movementAxisRaw > stickThreshold)
+        else if (horizontalAxisRaw > stickThreshold)
         {
             if (isFacingLeft)
             {

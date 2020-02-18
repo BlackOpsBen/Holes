@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7787188752796399949}
-  - component: {fileID: 746113466}
   - component: {fileID: 6380168576678868828}
   m_Layer: 0
   m_Name: Wormhole
@@ -34,18 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &746113466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7787188752796399948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87eca31c5447d411592fe5f36881154d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6380168576678868828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,8 +49,9 @@ MonoBehaviour:
   aViewB: {fileID: 7787188753106585738}
   bViewA: {fileID: 7787188754268781772}
   closedScale: 0
-  openScale: 2
+  openScale: 1
   enterScale: 10
+  speedMultiplier: 100
 --- !u!1 &7787188753106585736
 GameObject:
   m_ObjectHideFlags: 0

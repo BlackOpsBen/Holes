@@ -11,8 +11,9 @@ public class WormholeOpenClose : MonoBehaviour
     [SerializeField] float openScale = 2f;
     [SerializeField] float enterScale = 10f;
     [SerializeField] float speedMultiplier = 10f;
-    bool isOpening = false;
-    bool isClosing = false;
+    float t = 0.0f;
+    bool isBusy = false;
+    bool isResetting = false;
 
     private void Start()
     {
@@ -21,64 +22,46 @@ public class WormholeOpenClose : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0) && !isBusy)
         {
-            StartCoroutine(OpenWormHole());
+            isBusy = true;
+            transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y + GameManager.dimensionOffset * System.Convert.ToInt32(gameManager.GetisBCurrent()), transform.position.z);
         }
-
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButton(0) && !isResetting)
         {
-            StartCoroutine(CloseWormHole());
-        }
-    }
-
-    private IEnumerator OpenWormHole()
-    {
-        while (isClosing)
-        {
-            yield return null;
-        }
-        isOpening = true;
-        ScaleView scaleView;
-        scaleView = GetCurrentView();
-        float t = 0.0f;
-        while (t < 1f)
-        {
-            scaleView.scaleHole = Mathf.Lerp(closedScale, openScale, t);
-            t += 0.05f * Time.deltaTime * speedMultiplier;
-            yield return null;
-        }
-        isOpening = false;
-    }
-
-    private IEnumerator CloseWormHole()
-    {
-        while (isOpening)
-        {
-            yield return null;
-        }
-        isClosing = true;
-        ScaleView scaleView;
-        scaleView = GetCurrentView();
-        float t = 0.0f;
-        while (t < 1f)
-        {
-            scaleView.scaleHole = Mathf.Lerp(openScale, closedScale, t);
-            t += 0.05f * Time.deltaTime * speedMultiplier;
-            yield return null;
-        }
-        isClosing = false;
-    }
-
-    private ScaleView GetCurrentView()
-    {
-        if (gameManager.GetisBCurrent())
-        {
-            return aViewB;
+            aViewB.scaleHole = Mathf.Lerp(closedScale, openScale, t);
+            bViewA.scaleHole = Mathf.Lerp(closedScale, openScale, t);
+            if (t < 1f)
+            {
+                t += 0.05f * Time.deltaTime * speedMultiplier;
+            }
         }
         else
         {
-            return bViewA;
+            aViewB.scaleHole = Mathf.Lerp(closedScale, openScale, t);
+            bViewA.scaleHole = Mathf.Lerp(closedScale, openScale, t);
+            if (t > float.Epsilon)
+            {
+                isResetting = true;
+                t -= 0.05f * Time.deltaTime * speedMultiplier;
+            }
+            else
+            {
+                isBusy = false;
+                isResetting = false;
+            }
         }
     }
+
+    //private ScaleView GetCurrentView()
+    //{
+    //    if (gameManager.GetisBCurrent())
+    //    {
+    //        return aViewB;
+    //    }
+    //    else
+    //    {
+    //        return bViewA;
+    //    }
+    //}
 }
