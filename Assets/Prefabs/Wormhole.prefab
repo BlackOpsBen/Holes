@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7787188752796399949}
   - component: {fileID: 7787188752796399950}
+  - component: {fileID: 746113465}
+  - component: {fileID: 746113466}
   m_Layer: 0
   m_Name: Wormhole
   m_TagString: Untagged
@@ -48,6 +50,37 @@ MonoBehaviour:
   minMultiplier: 1
   maxMultiplier: 5
   multiplierIncrement: 5
+--- !u!114 &746113465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7787188752796399948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a5c6a245a96f4e64a40775fce01ab7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  aViewB: {fileID: 7787188753106585738}
+  bViewA: {fileID: 7787188754268781772}
+  closedScale: 0
+  openScale: 2
+  enterScale: 10
+--- !u!114 &746113466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7787188752796399948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87eca31c5447d411592fe5f36881154d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swapCameras: {fileID: 0}
 --- !u!1 &7787188753106585736
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +91,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7787188753106585716}
   - component: {fileID: 7787188753106585739}
-  - component: {fileID: 7787188753106585737}
   - component: {fileID: 7787188753106585738}
   m_Layer: 0
   m_Name: CamA
@@ -124,14 +156,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7787188753106585737
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7787188753106585736}
-  m_Enabled: 1
 --- !u!114 &7787188753106585738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7787188753299213369}
+  - component: {fileID: 309427405}
   m_Layer: 0
   m_Name: PointB
   m_TagString: Untagged
@@ -170,13 +195,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7787188753299213368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -20, z: 0}
+  m_LocalPosition: {x: 0, y: -40, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7787188754268781761}
   m_Father: {fileID: 7787188752796399949}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &309427405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7787188753299213368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd5f4ad721d94a4693c47edf0f11e7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7787188754268781760
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +224,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7787188754268781761}
   - component: {fileID: 7787188754268781763}
-  - component: {fileID: 7787188754268781762}
   - component: {fileID: 7787188754268781772}
   m_Layer: 0
   m_Name: CamB
@@ -253,14 +289,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7787188754268781762
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7787188754268781760}
-  m_Enabled: 1
 --- !u!114 &7787188754268781772
 MonoBehaviour:
   m_ObjectHideFlags: 0
