@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ public class WormholeOpenClose : MonoBehaviour
     float t = 0.0f;
     bool isBusy = false;
     bool isResetting = false;
+    bool isPlayerUsing = false;
 
     private void Start()
     {
@@ -28,13 +30,20 @@ public class WormholeOpenClose : MonoBehaviour
         {
             MoveWormhole();
         }
-        if (Input.GetMouseButton(0) && !isResetting)
+        if (Input.GetMouseButton(0) && !isResetting && !isPlayerUsing)
         {
             OpenWormhole();
         }
-        else
+        else if (!isPlayerUsing)
         {
             CloseWormhole();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<PlayerMover>())
+        {
+            StartCoroutine(ExpandForPlayerUse());
         }
     }
 
@@ -73,6 +82,34 @@ public class WormholeOpenClose : MonoBehaviour
             discColliderB.enabled = false;
             isBusy = false;
             isResetting = false;
+        }
+    }
+
+    private IEnumerator ExpandForPlayerUse()
+    {
+        isPlayerUsing = true;
+        ScaleView currentView = GetCurrentView();
+        float startScale = currentView.scaleHole;
+        float t2 = 0f;
+        while (t2 < 1f)
+        {
+            currentView.scaleHole = Mathf.Lerp(startScale, enterScale, t2);
+            t2 += 0.05f * Time.deltaTime * speedMultiplier;
+            Debug.Log("t2 value: " + t2);
+            yield return null;
+        }
+        isPlayerUsing = false;
+    }
+
+    private ScaleView GetCurrentView()
+    {
+        if (gameManager.GetisBCurrent())
+        {
+            return aViewB;
+        }
+        else
+        {
+            return bViewA;
         }
     }
 }

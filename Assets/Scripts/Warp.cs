@@ -11,11 +11,6 @@ public class Warp : MonoBehaviour
     private void Update()
     {
         SetDestination();
-
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            WarpToOtherPoint();
-        }
     }
 
     private void SetDestination()
@@ -34,7 +29,14 @@ public class Warp : MonoBehaviour
     {
         if (!isCoolingDown)
         {
-            WarpToOtherPoint();
+            if (GetComponent<PlayerMover>())
+            {
+                StartCoroutine(PlayerDelayedWarp());
+            }
+            else
+            {
+                WarpToOtherPoint();
+            }
         }
     }
 
@@ -50,6 +52,12 @@ public class Warp : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y - GameManager.dimensionOffset, transform.position.z);
         }
         StartCoroutine(EndCoolDown());
+    }
+
+    private IEnumerator PlayerDelayedWarp()
+    {
+        yield return new WaitForSeconds(0.5f);
+        WarpToOtherPoint();
     }
 
     private IEnumerator EndCoolDown()
