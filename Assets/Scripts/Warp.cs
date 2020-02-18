@@ -62,7 +62,7 @@ public class Warp : MonoBehaviour
 
     private IEnumerator EndCoolDown()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.1f);
         isCoolingDown = false;
     }
 }

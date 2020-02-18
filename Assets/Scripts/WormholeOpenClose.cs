@@ -65,8 +65,12 @@ public class WormholeOpenClose : MonoBehaviour
 
     private void OpenWormhole()
     {
-        discColliderA.enabled = true;
-        discColliderB.enabled = true;
+        if (t > 0.5f)
+        {
+            discColliderA.enabled = true;
+            discColliderB.enabled = true;
+        }
+        
         aViewB.scaleHole = Mathf.Lerp(closedScale, openScale, t);
         bViewA.scaleHole = Mathf.Lerp(closedScale, openScale, t);
         if (t < 1f)
@@ -86,8 +90,11 @@ public class WormholeOpenClose : MonoBehaviour
         }
         else
         {
-            discColliderA.enabled = false;
-            discColliderB.enabled = false;
+            if (t < 0.5f)
+            {
+                discColliderA.enabled = false;
+                discColliderB.enabled = false;
+            }
             isBusy = false;
             isResetting = false;
         }
