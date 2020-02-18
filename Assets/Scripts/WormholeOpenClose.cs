@@ -10,7 +10,7 @@ public class WormholeOpenClose : MonoBehaviour
     [SerializeField] ScaleView bViewA;
     [SerializeField] Collider2D discColliderA;
     [SerializeField] Collider2D discColliderB;
-    [SerializeField] float closedScale = 0f;
+    [SerializeField] float closedScale = float.Epsilon;
     [SerializeField] float openScale = 2f;
     [SerializeField] float enterScale = 10f;
     [SerializeField] float speedMultiplier = 10f;
@@ -37,6 +37,10 @@ public class WormholeOpenClose : MonoBehaviour
         else if (!isPlayerUsing)
         {
             CloseWormhole();
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            isPlayerUsing = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -89,16 +93,16 @@ public class WormholeOpenClose : MonoBehaviour
     {
         isPlayerUsing = true;
         ScaleView currentView = GetCurrentView();
+        ScaleView oppositeView = GetOppositeView();
+        oppositeView.scaleHole = 0.0f;
         float startScale = currentView.scaleHole;
         float t2 = 0f;
         while (t2 < 1f)
         {
             currentView.scaleHole = Mathf.Lerp(startScale, enterScale, t2);
             t2 += 0.05f * Time.deltaTime * speedMultiplier;
-            Debug.Log("t2 value: " + t2);
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
-        isPlayerUsing = false;
     }
 
     private ScaleView GetCurrentView()
@@ -110,6 +114,18 @@ public class WormholeOpenClose : MonoBehaviour
         else
         {
             return bViewA;
+        }
+    }
+
+    private ScaleView GetOppositeView()
+    {
+        if (gameManager.GetisBCurrent())
+        {
+            return bViewA;
+        }
+        else
+        {
+            return aViewB;
         }
     }
 }
