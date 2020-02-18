@@ -4,24 +4,80 @@ using UnityEngine;
 
 public class WormholeOpenClose : MonoBehaviour
 {
-    [SerializeField] Camera mainCamera;
+    [SerializeField] GameManager gameManager;
     [SerializeField] ScaleView aViewB;
     [SerializeField] ScaleView bViewA;
     [SerializeField] float closedScale = 0f;
     [SerializeField] float openScale = 2f;
     [SerializeField] float enterScale = 10f;
-    /* On DOWN, open
-     * On UP, close
-     * 
-     */
+    bool isOpening = false;
+    bool isClosing = false;
+
     private void Start()
     {
-        mainCamera = FindObjectOfType<SwapCameras>().GetComponent<Camera>();
-
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(OpenWormHole());
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            StartCoroutine(CloseWormHole());
+        }
+    }
+
+    private IEnumerator OpenWormHole()
+    {
+        while (isClosing)
+        {
+            yield return null;
+        }
+        isOpening = true;
+        ScaleView scaleView;
+        scaleView = GetCurrentView();
+        float t = 0.0f;
+        while (t < 1f)
+        {
+            scaleView.scaleHole = Mathf.Lerp(closedScale, openScale, t);
+            t += 0.05f * Time.deltaTime;
+            yield return null;
+        }
+        isOpening = false;
+    }
+
+    private IEnumerator CloseWormHole()
+    {
+        while (isOpening)
+        {
+            yield return null;
+        }
+        isClosing = true;
+        ScaleView scaleView;
+        scaleView = GetCurrentView();
+        float t = 0.0f;
+        while (t > 0f)
+        {
+            scaleView.scaleHole = Mathf.Lerp(openScale, closedScale, t);
+            t -= 0.05f * Time.deltaTime;
+            yield return null;
+        }
+        isClosing = false;
+    }
+
+    private ScaleView GetCurrentView()
+    {
+        if (gameManager.GetisBCurrent())
+        {
+            return bViewA;
+        }
+        else
+        {
+            return aViewB;
+        }
     }
 }
