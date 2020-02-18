@@ -7,6 +7,8 @@ public class WormholeOpenClose : MonoBehaviour
     [SerializeField] GameManager gameManager;
     [SerializeField] ScaleView aViewB;
     [SerializeField] ScaleView bViewA;
+    [SerializeField] Collider2D discColliderA;
+    [SerializeField] Collider2D discColliderB;
     [SerializeField] float closedScale = 0f;
     [SerializeField] float openScale = 2f;
     [SerializeField] float enterScale = 10f;
@@ -24,44 +26,53 @@ public class WormholeOpenClose : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && !isBusy)
         {
-            isBusy = true;
-            transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y + GameManager.dimensionOffset * System.Convert.ToInt32(gameManager.GetisBCurrent()), transform.position.z);
+            MoveWormhole();
         }
         if (Input.GetMouseButton(0) && !isResetting)
         {
-            aViewB.scaleHole = Mathf.Lerp(closedScale, openScale, t);
-            bViewA.scaleHole = Mathf.Lerp(closedScale, openScale, t);
-            if (t < 1f)
-            {
-                t += 0.05f * Time.deltaTime * speedMultiplier;
-            }
+            OpenWormhole();
         }
         else
         {
-            aViewB.scaleHole = Mathf.Lerp(closedScale, openScale, t);
-            bViewA.scaleHole = Mathf.Lerp(closedScale, openScale, t);
-            if (t > float.Epsilon)
-            {
-                isResetting = true;
-                t -= 0.05f * Time.deltaTime * speedMultiplier;
-            }
-            else
-            {
-                isBusy = false;
-                isResetting = false;
-            }
+            CloseWormhole();
         }
     }
 
-    //private ScaleView GetCurrentView()
-    //{
-    //    if (gameManager.GetisBCurrent())
-    //    {
-    //        return aViewB;
-    //    }
-    //    else
-    //    {
-    //        return bViewA;
-    //    }
-    //}
+    private void MoveWormhole()
+    {
+        isBusy = true;
+        float newXPos = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+        float newYPos = Camera.main.ScreenToWorldPoint(Input.mousePosition).y + GameManager.dimensionOffset * System.Convert.ToInt32(gameManager.GetisBCurrent());
+        transform.position = new Vector3(newXPos, newYPos, transform.position.z);
+    }
+
+    private void OpenWormhole()
+    {
+        discColliderA.enabled = true;
+        discColliderB.enabled = true;
+        aViewB.scaleHole = Mathf.Lerp(closedScale, openScale, t);
+        bViewA.scaleHole = Mathf.Lerp(closedScale, openScale, t);
+        if (t < 1f)
+        {
+            t += 0.05f * Time.deltaTime * speedMultiplier;
+        }
+    }
+
+    private void CloseWormhole()
+    {
+        aViewB.scaleHole = Mathf.Lerp(closedScale, openScale, t);
+        bViewA.scaleHole = Mathf.Lerp(closedScale, openScale, t);
+        if (t > float.Epsilon)
+        {
+            isResetting = true;
+            t -= 0.05f * Time.deltaTime * speedMultiplier;
+        }
+        else
+        {
+            discColliderA.enabled = false;
+            discColliderB.enabled = false;
+            isBusy = false;
+            isResetting = false;
+        }
+    }
 }
