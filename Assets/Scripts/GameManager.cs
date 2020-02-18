@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] Camera mainCamera;
+    public Camera mainCamera;
 
     bool isBCurrent = false;
 

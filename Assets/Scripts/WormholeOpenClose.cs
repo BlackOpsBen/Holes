@@ -10,6 +10,7 @@ public class WormholeOpenClose : MonoBehaviour
     [SerializeField] float closedScale = 0f;
     [SerializeField] float openScale = 2f;
     [SerializeField] float enterScale = 10f;
+    [SerializeField] float speedMultiplier = 10f;
     bool isOpening = false;
     bool isClosing = false;
 
@@ -44,7 +45,7 @@ public class WormholeOpenClose : MonoBehaviour
         while (t < 1f)
         {
             scaleView.scaleHole = Mathf.Lerp(closedScale, openScale, t);
-            t += 0.05f * Time.deltaTime;
+            t += 0.05f * Time.deltaTime * speedMultiplier;
             yield return null;
         }
         isOpening = false;
@@ -60,10 +61,10 @@ public class WormholeOpenClose : MonoBehaviour
         ScaleView scaleView;
         scaleView = GetCurrentView();
         float t = 0.0f;
-        while (t > 0f)
+        while (t < 1f)
         {
             scaleView.scaleHole = Mathf.Lerp(openScale, closedScale, t);
-            t -= 0.05f * Time.deltaTime;
+            t += 0.05f * Time.deltaTime * speedMultiplier;
             yield return null;
         }
         isClosing = false;
@@ -73,11 +74,11 @@ public class WormholeOpenClose : MonoBehaviour
     {
         if (gameManager.GetisBCurrent())
         {
-            return bViewA;
+            return aViewB;
         }
         else
         {
-            return aViewB;
+            return bViewA;
         }
     }
 }
