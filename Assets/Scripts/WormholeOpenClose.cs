@@ -40,6 +40,10 @@ public class WormholeOpenClose : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
+            if (isPlayerUsing)
+            {
+                t = 0.0f;
+            }
             isPlayerUsing = false;
         }
     }
@@ -103,6 +107,7 @@ public class WormholeOpenClose : MonoBehaviour
             t2 += 0.05f * Time.deltaTime * speedMultiplier;
             yield return new WaitForEndOfFrame();
         }
+        currentView.scaleHole = 0.0f;
     }
 
     private ScaleView GetCurrentView()
