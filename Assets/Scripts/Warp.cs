@@ -27,15 +27,18 @@ public class Warp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isCoolingDown)
+        if (collision.GetComponentInParent<WormholeOpenClose>())
         {
-            if (GetComponent<PlayerMover>())
+            if (!isCoolingDown)
             {
-                StartCoroutine(PlayerDelayedWarp());
-            }
-            else
-            {
-                WarpToOtherPoint();
+                if (GetComponent<PlayerMover>())
+                {
+                    StartCoroutine(PlayerDelayedWarp());
+                }
+                else
+                {
+                    WarpToOtherPoint();
+                }
             }
         }
     }

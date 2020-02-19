@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PointA
   - PointB
+  - CoffeeTarget
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - 
   - 
   - WormHoles
-  - 
-  - 
-  - 
+  - Enemies
+  - Player
+  - Environment
   - 
   - 
   - 
