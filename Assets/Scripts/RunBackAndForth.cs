@@ -25,7 +25,6 @@ public class RunBackAndForth : MonoBehaviour
         if (collision.otherCollider == wallHitCollider)
         {
             isFacingLeft = !isFacingLeft;
-            Debug.Log("Collided with " + collision.gameObject.name);
             transform.Rotate(0f, 180f, 0f);
         }
     }

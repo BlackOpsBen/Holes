@@ -31,7 +31,7 @@ public class Warp : MonoBehaviour
         {
             if (!isCoolingDown)
             {
-                if (GetComponent<PlayerMover>())
+                if (GetComponent<PlayerMove>())
                 {
                     StartCoroutine(PlayerDelayedWarp());
                 }

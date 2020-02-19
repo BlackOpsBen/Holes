@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMover : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
     bool isFacingLeft = false;
@@ -17,18 +17,17 @@ public class PlayerMover : MonoBehaviour
     float verticalAxisRaw;
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         horizontalAxis = Input.GetAxis("Horizontal");
         horizontalAxisRaw = Input.GetAxisRaw("Horizontal");
 
-        verticalAxis = Input.GetAxis("Vertical");
-        verticalAxisRaw = Input.GetAxisRaw("Vertical");
+        transform.position = transform.position + new Vector3(horizontalAxis * Time.deltaTime * moveSpeed, 0f, 0f);
+        FaceDirection();
+    }
 
-        // Move the player
-        transform.position = transform.position + new Vector3(horizontalAxis * Time.deltaTime * moveSpeed, verticalAxis * Time.deltaTime * moveSpeed, 0f);
-
-        // New flip behavior
+    private void FaceDirection()
+    {
         if (horizontalAxisRaw < -stickThreshold)
         {
             if (!isFacingLeft)
@@ -45,6 +44,5 @@ public class PlayerMover : MonoBehaviour
                 isFacingLeft = false;
             }
         }
-
     }
 }

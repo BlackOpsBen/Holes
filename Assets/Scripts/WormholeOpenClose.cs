@@ -49,7 +49,7 @@ public class WormholeOpenClose : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlayerMover>())
+        if (collision.GetComponent<PlayerMove>())
         {
             StartCoroutine(ExpandForPlayerUse());
         }

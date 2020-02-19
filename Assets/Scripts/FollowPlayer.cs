@@ -8,7 +8,7 @@ public class FollowPlayer : MonoBehaviour
 
     private void Start()
     {
-        playerTransform = FindObjectOfType<PlayerMover>().transform;
+        playerTransform = FindObjectOfType<PlayerMove>().transform;
     }
     void Update()
     {
