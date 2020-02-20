@@ -16,12 +16,10 @@ public class PlayerJump : MonoBehaviour
     {
         Vector2 size = new Vector2(col.bounds.size.x * 0.9f, 0.25f);
         Vector3 castFrom = new Vector3(col.bounds.center.x, col.bounds.center.y - col.bounds.size.y / 2f - 0.26f, col.bounds.center.z);
-        Debug.DrawLine(castFrom, castFrom + Vector3.down * 0.25f);
         hitInfo = Physics2D.BoxCast(castFrom, size, 0f, Vector2.down, 0.25f);
 
         if (hitInfo)
         {
-            Debug.Log(hitInfo.collider.name);
             isGrounded = true;
         }
         else
@@ -38,18 +36,4 @@ public class PlayerJump : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
     }
-
-    //private bool isGrounded()
-    //{
-    //    if (hitInfo)
-    //    {
-    //        Debug.Log("Returning true!");
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Returning FALSE!");
-    //        return false;
-    //    }
-    //}
 }
