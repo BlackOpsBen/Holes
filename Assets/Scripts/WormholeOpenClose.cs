@@ -49,6 +49,7 @@ public class WormholeOpenClose : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Trigger Entered Wormhole");
         if (collision.GetComponent<PlayerMove>())
         {
             StartCoroutine(ExpandForPlayerUse());

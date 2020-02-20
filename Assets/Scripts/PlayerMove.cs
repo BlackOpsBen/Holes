@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    [SerializeField] Animator animator;
     [SerializeField] float moveSpeed = 5f;
+    float moveThreshold = .01f;
     bool isFacingLeft = false;
     float stickThreshold = 0.1f;
 
@@ -22,7 +24,16 @@ public class PlayerMove : MonoBehaviour
         horizontalAxis = Input.GetAxis("Horizontal");
         horizontalAxisRaw = Input.GetAxisRaw("Horizontal");
 
-        transform.position = transform.position + new Vector3(horizontalAxis * Time.deltaTime * moveSpeed, 0f, 0f);
+        if (Input.GetAxisRaw("Horizontal") > moveThreshold || Input.GetAxisRaw("Horizontal") < -moveThreshold)
+        {
+            animator.SetBool("isRunning", true);
+            transform.position = transform.position + new Vector3(horizontalAxis * Time.deltaTime * moveSpeed, 0f, 0f);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
+
         FaceDirection();
     }
 

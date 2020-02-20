@@ -10,19 +10,18 @@ public class PlayerJump : MonoBehaviour
     bool isGrounded = false;
 
     // Box Cast info
-    Vector2 origin = new Vector2(0f, -1f);
-    Vector2 size = new Vector2(1.4f, 0.25f);
     RaycastHit2D hitInfo;
-    [SerializeField] GameObject boxRef;
 
     void Update()
     {
-        hitInfo = Physics2D.BoxCast(origin, size, 0f, Vector2.down, size.y);
-        boxRef.transform.position = transform.position + Vector3.down;
-        boxRef.transform.localScale = size;
+        Vector2 size = new Vector2(col.bounds.size.x * 0.9f, 0.25f);
+        Vector3 castFrom = new Vector3(col.bounds.center.x, col.bounds.center.y - col.bounds.size.y / 2f - 0.26f, col.bounds.center.z);
+        Debug.DrawLine(castFrom, castFrom + Vector3.down * 0.25f);
+        hitInfo = Physics2D.BoxCast(castFrom, size, 0f, Vector2.down, 0.25f);
 
         if (hitInfo)
         {
+            Debug.Log(hitInfo.collider.name);
             isGrounded = true;
         }
         else
