@@ -14,6 +14,8 @@ public class WormholeOpenClose : MonoBehaviour
     [SerializeField] float openScale = 2f;
     [SerializeField] float enterScale = 10f;
     [SerializeField] float speedMultiplier = 10f;
+    [SerializeField] LayerMask layerMask;
+    [SerializeField] float maxCastDist = 10f;
     Transform player;
     Vector2 mousePos;
     Vector2 wormholeSite;
@@ -72,7 +74,7 @@ public class WormholeOpenClose : MonoBehaviour
     private Vector2 DetermineWormholeSite()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(player.position, mousePos - new Vector2 (player.position.x, player.position.y));
+        RaycastHit2D hit = Physics2D.Raycast(player.position, mousePos - new Vector2 (player.position.x, player.position.y), maxCastDist, layerMask);
         if (hit)
         {
             Debug.Log("Hit found.");

@@ -55,6 +55,10 @@ MonoBehaviour:
   openScale: 1.25
   enterScale: 10
   speedMultiplier: 100
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  maxCastDist: 10
 --- !u!50 &5035638592500798085
 Rigidbody2D:
   serializedVersion: 4
