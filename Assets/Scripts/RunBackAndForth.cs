@@ -19,9 +19,12 @@ public class RunBackAndForth : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        isFacingLeft = !isFacingLeft;
-        transform.parent.transform.Rotate(0f, 180f, 0f);
+        if (!collision.GetComponent<Health>())
+        {
+            isFacingLeft = !isFacingLeft;
+            transform.parent.transform.Rotate(0f, 180f, 0f);
+        }
     }
 }

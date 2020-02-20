@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3964592307238909879}
   - component: {fileID: 1400659258982029443}
   - component: {fileID: 3687290177242486890}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 1.6434886, y: -0.7005036}
@@ -85,6 +85,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  friendlyFire: 0
+  friendlyType: Raptor
 --- !u!1 &4410633713966965763
 GameObject:
   m_ObjectHideFlags: 0
