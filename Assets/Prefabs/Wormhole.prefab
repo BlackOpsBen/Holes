@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7787188752796399949}
   - component: {fileID: 6380168576678868828}
   - component: {fileID: 5035638592500798085}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wormhole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ MonoBehaviour:
   discColliderA: {fileID: 745016771}
   discColliderB: {fileID: 1931678226}
   closedScale: 0
-  openScale: 1
+  openScale: 1.25
   enterScale: 10
   speedMultiplier: 100
 --- !u!50 &5035638592500798085
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 7787188753106585716}
   - component: {fileID: 7787188753106585739}
   - component: {fileID: 7787188753106585738}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CamA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 3639
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 24e670e1125c44110a9262feb720eb8e, type: 2}
   m_TargetDisplay: 0
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 7787188753299213369}
   - component: {fileID: 309427405}
   - component: {fileID: 1931678226}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PointB
   m_TagString: PointB
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 7787188754268781761}
   - component: {fileID: 7787188754268781763}
   - component: {fileID: 7787188754268781772}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CamB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 3639
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: c0fcc48c304b04415bb19aedb4f69b6b, type: 2}
   m_TargetDisplay: 0
@@ -324,7 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7787188754585429406}
   - component: {fileID: 745016771}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PointA
   m_TagString: PointA
   m_Icon: {fileID: 0}

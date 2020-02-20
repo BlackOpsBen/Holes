@@ -14,6 +14,8 @@ public class WormholeOpenClose : MonoBehaviour
     [SerializeField] float openScale = 2f;
     [SerializeField] float enterScale = 10f;
     [SerializeField] float speedMultiplier = 10f;
+    Transform player;
+    Vector2 mousePos;
     float t = 0.0f;
     bool isBusy = false;
     bool isResetting = false;
@@ -21,6 +23,7 @@ public class WormholeOpenClose : MonoBehaviour
 
     private void Start()
     {
+        player = FindObjectOfType<PlayerMove>().transform;
         gameManager = FindObjectOfType<GameManager>();
     }
 
@@ -57,10 +60,39 @@ public class WormholeOpenClose : MonoBehaviour
 
     private void MoveWormhole()
     {
+        Vector2 wormholeSite = DetermineWormholeSite();
         isBusy = true;
-        float newXPos = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-        float newYPos = Camera.main.ScreenToWorldPoint(Input.mousePosition).y + GameManager.dimensionOffset * System.Convert.ToInt32(gameManager.GetisBCurrent());
+        float newXPos = wormholeSite.x;
+        float newYPos = wormholeSite.y + GameManager.dimensionOffset * System.Convert.ToInt32(gameManager.GetisBCurrent());
         transform.position = new Vector3(newXPos, newYPos, transform.position.z);
+    }
+
+    private Vector2 DetermineWormholeSite()
+    {
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(player.position, mousePos);
+        if (hit)
+        {
+            Debug.Log("Hit found.");
+            if (Vector2.Distance(player.position, hit.point) < Vector2.Distance(player.position, mousePos))
+            {
+                Debug.Log(hit.collider.name);
+                Debug.DrawLine(player.position, hit.point);
+                return hit.point;
+            }
+            else
+            {
+                Debug.Log("Mouse closer than hit.");
+                Debug.DrawLine(player.position, mousePos);
+                return mousePos;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No hit.");
+            Debug.DrawLine(player.position, mousePos);
+            return mousePos;
+        }
     }
 
     private void OpenWormhole()
