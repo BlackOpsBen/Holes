@@ -31,9 +31,10 @@ public class PlayerJump : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpMultiplier, ForceMode2D.Impulse);
         }
-        if (!isGrounded && Input.GetButtonUp("Jump") && rb.velocity.y > float.Epsilon)
-        {
-            rb.velocity = Vector2.zero;
-        }
+        //if (!isGrounded && Input.GetButtonUp("Jump") && rb.velocity.y > float.Epsilon)
+        //{
+        //    rb.velocity = Vector2.zero;
+        //}
+        // Removed this part which allows early termination, but was too buggy
     }
 }
