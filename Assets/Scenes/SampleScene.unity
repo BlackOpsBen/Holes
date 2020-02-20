@@ -1796,20 +1796,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6380168576678868828, guid: 7c1c7bafbca484568876e1afa5b22a2b,
-        type: 3}
-      propertyPath: openScale
-      value: 1.25
-      objectReference: {fileID: 0}
     - target: {fileID: 7787188752796399948, guid: 7c1c7bafbca484568876e1afa5b22a2b,
         type: 3}
       propertyPath: m_Name
       value: Wormhole
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787188752796399948, guid: 7c1c7bafbca484568876e1afa5b22a2b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7787188752796399949, guid: 7c1c7bafbca484568876e1afa5b22a2b,
         type: 3}
@@ -1865,46 +1855,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787188753106585736, guid: 7c1c7bafbca484568876e1afa5b22a2b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787188753106585739, guid: 7c1c7bafbca484568876e1afa5b22a2b,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 3639
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787188753299213368, guid: 7c1c7bafbca484568876e1afa5b22a2b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787188753697361600, guid: 7c1c7bafbca484568876e1afa5b22a2b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787188754268781760, guid: 7c1c7bafbca484568876e1afa5b22a2b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787188754268781763, guid: 7c1c7bafbca484568876e1afa5b22a2b,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 3639
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787188754585429405, guid: 7c1c7bafbca484568876e1afa5b22a2b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787188754600124959, guid: 7c1c7bafbca484568876e1afa5b22a2b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c1c7bafbca484568876e1afa5b22a2b, type: 3}
