@@ -16,6 +16,7 @@ public class WormholeOpenClose : MonoBehaviour
     [SerializeField] float speedMultiplier = 10f;
     Transform player;
     Vector2 mousePos;
+    Vector2 wormholeSite;
     float t = 0.0f;
     bool isBusy = false;
     bool isResetting = false;
@@ -29,6 +30,8 @@ public class WormholeOpenClose : MonoBehaviour
 
     private void Update()
     {
+        wormholeSite = DetermineWormholeSite();
+
         if (Input.GetMouseButton(0) && !isBusy)
         {
             MoveWormhole();
@@ -60,7 +63,6 @@ public class WormholeOpenClose : MonoBehaviour
 
     private void MoveWormhole()
     {
-        Vector2 wormholeSite = DetermineWormholeSite();
         isBusy = true;
         float newXPos = wormholeSite.x;
         float newYPos = wormholeSite.y + GameManager.dimensionOffset * System.Convert.ToInt32(gameManager.GetisBCurrent());
@@ -70,7 +72,7 @@ public class WormholeOpenClose : MonoBehaviour
     private Vector2 DetermineWormholeSite()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(player.position, mousePos);
+        RaycastHit2D hit = Physics2D.Raycast(player.position, mousePos - new Vector2 (player.position.x, player.position.y));
         if (hit)
         {
             Debug.Log("Hit found.");
@@ -93,6 +95,11 @@ public class WormholeOpenClose : MonoBehaviour
             Debug.DrawLine(player.position, mousePos);
             return mousePos;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(mousePos, .5f);
     }
 
     private void OpenWormhole()

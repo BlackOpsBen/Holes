@@ -15,7 +15,7 @@ public class PlayerJump : MonoBehaviour
     void Update()
     {
         Vector2 size = new Vector2(col.bounds.size.x * 0.9f, 0.25f);
-        Vector3 castFrom = new Vector3(col.bounds.center.x, col.bounds.center.y - col.bounds.size.y / 2f - 0.26f, col.bounds.center.z);
+        Vector3 castFrom = new Vector3(col.bounds.center.x, col.bounds.center.y - col.bounds.size.y / 2f + 0.26f, col.bounds.center.z);
         hitInfo = Physics2D.BoxCast(castFrom, size, 0f, Vector2.down, 0.25f);
 
         if (hitInfo)
