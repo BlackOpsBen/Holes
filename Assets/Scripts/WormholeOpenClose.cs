@@ -77,7 +77,6 @@ public class WormholeOpenClose : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(player.position, mousePos - new Vector2 (player.position.x, player.position.y), maxCastDist, layerMask);
         if (hit)
         {
-            Debug.Log("Hit found.");
             if (Vector2.Distance(player.position, hit.point) < Vector2.Distance(player.position, mousePos))
             {
                 Debug.Log(hit.collider.name);
@@ -86,14 +85,12 @@ public class WormholeOpenClose : MonoBehaviour
             }
             else
             {
-                Debug.Log("Mouse closer than hit.");
                 Debug.DrawLine(player.position, mousePos);
                 return mousePos;
             }
         }
         else
         {
-            Debug.LogWarning("No hit.");
             Debug.DrawLine(player.position, mousePos);
             return mousePos;
         }

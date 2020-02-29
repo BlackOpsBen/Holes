@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMoveRB : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Animator animator;
@@ -17,9 +17,6 @@ public class PlayerMove : MonoBehaviour
     float horizontalAxis;
     float horizontalAxisRaw;
 
-    float verticalAxis;
-    float verticalAxisRaw;
-
     // Update is called once per frame
     void Update()
     {
@@ -29,12 +26,8 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") > moveThreshold || Input.GetAxisRaw("Horizontal") < -moveThreshold)
         {
             animator.SetBool("isRunning", true);
-            if (Mathf.Abs(rb.velocity.x) < maxSpeed)
-            {
-                rb.AddForce(new Vector2(horizontalAxis * Time.deltaTime * moveSpeed, 0f), ForceMode2D.Impulse);
-            }
+            rb.AddForce(new Vector2(horizontalAxis * Time.deltaTime * moveSpeed, 0f),ForceMode2D.Force);
             rb.velocity.Set(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), rb.velocity.y);
-            Debug.Log(rb.velocity.x);
             //transform.position = transform.position + new Vector3(horizontalAxis * Time.deltaTime * moveSpeed, 0f, 0f);
         }
         else
