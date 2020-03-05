@@ -124,9 +124,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -229,7 +230,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0000000055879354, y: -0.000000013038516}
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 1
 --- !u!1 &7787188754268781760
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,9 +275,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -366,7 +368,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.0000000055879354, y: -0.000000013038516}
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 1
 --- !u!1001 &7787188753697458272
 PrefabInstance:
   m_ObjectHideFlags: 0
